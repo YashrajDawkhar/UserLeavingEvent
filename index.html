@@ -187,6 +187,7 @@
         document.addEventListener('visibilitychange', function () {
             if (document.hidden) {
                 alert('Exit intent detected via tab switch.');
+                //It work when tab switch mean i open other app in parallel
             }
         });
 
@@ -209,17 +210,7 @@
             }
         });
 
-        // Detect when the page is fully unloaded
-        window.addEventListener('unload', function () {
-            alert('User has left the page.');
-            // Perform final actions like sending data to server
-        });
-
-        // Detect when the page is hidden or being unloaded (pagehide is more reliable for mobile)
-        window.addEventListener('pagehide', function () {
-            alert('User navigated away or switched tabs (pagehide event).');
-            // Perform any necessary cleanup or logging
-        });
+    
 
 
 
