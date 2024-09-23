@@ -171,7 +171,19 @@
             let scrollSpeed = (lastScrollPosition - currentScrollPosition) / timeDiff;
 
             if (scrollSpeed > scrollThreshold && currentScrollPosition < lastScrollPosition) {
-                alert('Exit intent detected via scroll.');
+                
+                fetch('https://userleavingevent.free.beeceptor.com/exitIntent', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(
+                        {
+                            "key": 'Exit intent detected via scroll.'
+                        }
+                    )
+                })
+
             }
 
             lastScrollPosition = currentScrollPosition;
@@ -180,14 +192,37 @@
 
         // Back Button Press
         window.addEventListener('popstate', function () {
-            alert('Exit intent detected via back button.');
+     
+            fetch('https://userleavingevent.free.beeceptor.com/exitIntentBackButton', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(
+                        {
+                            "key": 'Exit intent detected via back button.'
+                        }
+                    )
+                })
+
         });
 
         // Tab Switch or Browser Minimize
         document.addEventListener('visibilitychange', function () {
             if (document.hidden) {
-                alert('Exit intent detected via tab switch.');
+               
                 //It work when tab switch mean i open other app in parallel
+                fetch('https://userleavingevent.free.beeceptor.com/tabSwitch', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(
+                        {
+                            "key": 'Exit intent detected via tab switch.'
+                        }
+                    )
+                })
             }
         });
 
@@ -195,15 +230,26 @@
         // Detect when the user is about to leave the page (e.g., close tab, navigate away)
         window.addEventListener('beforeunload', function (event) {
             // Perform any action like analytics or logging
-            alert('User is about to leave the page.');
+           
+            fetch('https://userleavingevent.free.beeceptor.com/beforeunload', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(
+                        {
+                            "key": 'User is about to leave the page.'
+                        }
+                    )
+                })
 
             // Optionally, show a custom confirmation dialog (modern browsers might ignore it)
             // event.preventDefault();
             // event.returnValue = ''; // The modern way to show a confirmation dialog.
         });
 
-       
-    
+
+
 
 
 
@@ -213,5 +259,3 @@
 </body>
 
 </html>
-
-
